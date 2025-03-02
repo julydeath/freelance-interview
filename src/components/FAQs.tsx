@@ -89,7 +89,7 @@ export default function FAQs({ faqs, shortName }: any) {
           ))}
         </div>
 
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -169,7 +169,7 @@ export default function FAQs({ faqs, shortName }: any) {
               </motion.button>
             </form>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );
