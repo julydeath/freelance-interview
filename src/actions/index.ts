@@ -7,8 +7,6 @@ export async function submitContactForm(formData: FormData) {
 
   const data = { name, email, message };
 
-  console.log({ name, email, message });
-
   try {
     await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/contact`, {
       method: "POST",

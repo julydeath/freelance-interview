@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Image from "next/image";
@@ -5,6 +6,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { getModules } from "@/api";
+import { useQuery } from "@tanstack/react-query";
 
 export default function Header() {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -14,6 +17,13 @@ export default function Header() {
   const toggleNav = () => {
     setIsNavOpen(!isNavOpen);
   };
+
+  const { data: modules = [] } = useQuery({
+    queryKey: ["modules"],
+    queryFn: getModules,
+  });
+
+  console.log({ modules });
 
   useEffect(() => {
     // Close mobile nav when clicking outside
@@ -71,7 +81,7 @@ export default function Header() {
             </button>
 
             <AnimatePresence>
-              {isDropdownOpen && (
+              {isDropdownOpen && modules && modules.length > 0 && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -79,24 +89,15 @@ export default function Header() {
                   transition={{ duration: 0.2 }}
                   className="absolute left-0 mt-2 w-48 bg-white shadow-lg rounded-md overflow-hidden"
                 >
-                  <Link
-                    href="/fi"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >
-                    Finance Module
-                  </Link>
-                  <Link
-                    href="/co"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >
-                    Controlling Module
-                  </Link>
-                  <Link
-                    href="/sd"
-                    className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                  >
-                    Sales & Distribution Module
-                  </Link>
+                  {modules.map((module: any) => (
+                    <Link
+                      key={module.id}
+                      href={module.slug}
+                      className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      {module.module_name}
+                    </Link>
+                  ))}
                 </motion.div>
               )}
             </AnimatePresence>
@@ -188,7 +189,7 @@ export default function Header() {
                   </button>
 
                   <AnimatePresence>
-                    {isMobileDropdownOpen && (
+                    {isMobileDropdownOpen && modules && modules.length > 0 && (
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
@@ -196,27 +197,16 @@ export default function Header() {
                         transition={{ duration: 0.2 }}
                         className="mt-2 bg-gray-50 shadow-md rounded-md overflow-hidden"
                       >
-                        <Link
-                          href="/fi"
-                          className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                          onClick={toggleNav}
-                        >
-                          Finance Module
-                        </Link>
-                        <Link
-                          href="/co"
-                          className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                          onClick={toggleNav}
-                        >
-                          Controlling Module
-                        </Link>
-                        <Link
-                          href="/sd"
-                          className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-                          onClick={toggleNav}
-                        >
-                          Sales & Distribution Module
-                        </Link>
+                        {modules.map((module: any) => (
+                          <Link
+                            key={module.id}
+                            href={module.slug}
+                            className="block px-4 py-2 text-gray-700 hover:bg-gray-100"
+                            onClick={toggleNav}
+                          >
+                            {module.module_name}
+                          </Link>
+                        ))}
                       </motion.div>
                     )}
                   </AnimatePresence>

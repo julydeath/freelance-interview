@@ -11,6 +11,26 @@ export async function getTransportModule() {
   }
 }
 
+export async function getModules() {
+  try {
+    const res = await fetch(`${URI}/api/modules`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export async function getModule(slug: string) {
+  try {
+    const res = await fetch(`${URI}/api/modules/${slug}`);
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export async function getSalesAndDistributionModule() {
   try {
     const res = await fetch(`${URI}/api/modules/sd`);
