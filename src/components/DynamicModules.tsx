@@ -2,6 +2,7 @@
 
 import { getModule } from "@/api";
 import Loader from "@/app/loading";
+import NotFound from "@/app/not-found";
 import CaseStudies from "@/components/CaseStudies";
 import FAQs from "@/components/FAQs";
 import FeaturedConsultant from "@/components/FeaturedConsultant";
@@ -21,6 +22,10 @@ export default function DynamicModule({ slug }: { slug: string }) {
 
   if (isLoading) {
     return <Loader />;
+  }
+
+  if (!module) {
+    return <NotFound slug={slug} />;
   }
 
   return (

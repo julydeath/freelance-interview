@@ -25,6 +25,10 @@ export async function getModule(slug: string) {
   try {
     const res = await fetch(`${URI}/api/modules/${slug}`);
     const data = await res.json();
+
+    if (!res.ok) {
+      return null;
+    }
     return data;
   } catch (error) {
     console.log(error);
