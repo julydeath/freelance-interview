@@ -23,7 +23,6 @@ export default function Header() {
     queryFn: getModules,
   });
 
-  console.log({ modules });
 
   useEffect(() => {
     // Close mobile nav when clicking outside

@@ -1,14 +1,23 @@
-import { getModule } from "@/api";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { getModule, getModules } from "@/api";
 import DynamicModule from "@/components/DynamicModules";
 
 import { getQueryClient } from "@/utils/getQueryClient";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
+import { Metadata } from "next";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const generateMetadata = async({params} : PageProps) => {
+export const generateStaticParams = async() => {
+  const modules = await getModules();
+  return modules.map((module : any) => ({
+    slug: module.slug
+  }));
+}
+
+export const generateMetadata = async({params} : PageProps): Promise<Metadata> => {
   const syncParams = await params;
   const { slug } = syncParams;
   const data = await getModule(slug);
@@ -22,7 +31,6 @@ export const generateMetadata = async({params} : PageProps) => {
   return {
     title: data.module_name,
     description: data.overview,
-    image: data.banner_image,
     openGraph: {
       images :{
         url: data.banner_image,
