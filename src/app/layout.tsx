@@ -16,7 +16,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SAP Module",
+  title: {
+    default : "SAP Modules",
+    template: "%s - SAP Modules",
+  },
   description: "SAP Module description",
 };
 
