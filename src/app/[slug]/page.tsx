@@ -8,6 +8,34 @@ interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
+export const generateMetadata = async({params} : PageProps) => {
+  const syncParams = await params;
+  const { slug } = syncParams;
+  const data = await getModule(slug);
+  if (!data) {
+    return {
+      title: "SAP Module Not Found",
+      description: "SAP provides innovative solutions that empower businesses and drive success.",
+    };
+  }
+
+  return {
+    title: data.module_name,
+    description: data.overview,
+    image: data.banner_image,
+    openGraph: {
+      images :{
+        url: data.banner_image,
+        width: 1200,
+        height: 630,
+        alt: data.module_name,
+      }
+    }
+  };
+}
+
+//getModules() only called once when the page loads
+
 const Page = async ({ params }: PageProps) => {
   const syncParams = await params;
   const { slug } = syncParams;
