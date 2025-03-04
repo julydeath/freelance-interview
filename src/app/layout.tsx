@@ -17,7 +17,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "SAP Module",
-  description: "SAP Module",
+  description: "SAP Module description",
 };
 
 export default function RootLayout({

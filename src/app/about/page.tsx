@@ -2,7 +2,13 @@
 
 import { fadeIn, fadeInUp, staggerChildren } from "@/utils/animations";
 import { motion } from "framer-motion";
+import { Metadata } from "next";
 import { useState } from "react";
+
+export const metadata : Metadata = {
+  title: "About Us",
+  description: "Discover the story behind SAP Module and its mission, vision, and values.",
+}
 
 export default function AboutUs() {
   const [activeTab, setActiveTab] = useState(0);
