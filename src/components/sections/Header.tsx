@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+"use client"
 
-"use client";
+import { fadeInUp } from '@/utils/animations';
+import { motion } from 'framer-motion';
 
-import { fadeInUp } from "@/utils/animations";
-import { motion } from "framer-motion";
-
-export default function Hero({ transportModule }: any) {
-  return (
+export const Header = () => {
+    return(
     <div>
       <section className="relative h-96 md:h-screen md:max-h-[600px] overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-900/60 to-indigo-900/60 z-10"></div>
@@ -69,5 +67,5 @@ export default function Hero({ transportModule }: any) {
         </div>
       </section>
     </div>
-  );
-}
+    )
+  };

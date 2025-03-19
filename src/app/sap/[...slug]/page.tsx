@@ -76,6 +76,8 @@ const Timeline = dynamic(
   }
 );
 
+const Header = dynamic(() => import("@/components/sections/Header").then((module) => module.Header))
+
 
 // Component map for easy lookup
 const componentMap = {
@@ -89,7 +91,8 @@ const componentMap = {
   HeroSubModule,
   HeroRole,
   IndustryUseCase,
-  SkillsRequired
+  SkillsRequired,
+  Header
 };
 
 export default async function SlugPage({ params }: { params: Promise<{ slug: string[] }> }) {
@@ -102,8 +105,6 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
   
   // Fetch data based on the URL path
   const pageData = await getContentForSlug(path);
-
-  console.log({pageData})
   
   // If no data found, return 404
   if (!pageData) {
@@ -114,8 +115,8 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
   const { component_names: componentNames } = template;
 
   return (
-    <main className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl text-black font-bold mb-8">{content.title || content.company || 'Content'}</h1>
+    <main className="container mx-auto py-8">
+      {/* <h1 className="text-3xl text-black font-bold mb-8">{content.title || content.company || 'Content'}</h1> */}
       
       {/* Render each component from the template */}
       {componentNames.map((componentName: string) => {
