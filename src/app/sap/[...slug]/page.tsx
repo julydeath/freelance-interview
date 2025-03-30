@@ -74,10 +74,10 @@ export default async function SlugPage({
   const { template, content } = pageData;
   const { component_names: componentNames } = template;
 
+  console.log({ template, content });
+
   return (
     <main className="container mx-auto py-8">
-      {/* <h1 className="text-3xl text-black font-bold mb-8">{content.title || content.company || 'Content'}</h1> */}
-
       {/* Render each component from the template */}
       {componentNames.map((componentName: string) => {
         const Component =

@@ -2,32 +2,36 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
-export default function MainModuleHero() {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default function MainModuleHero({ data }: { data: any }) {
+  console.log({ data });
   return (
     <section className="relative w-full bg-gradient-to-b from-blue-50 to-white py-16 md:py-24">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="space-y-4">
             <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800 mb-2">
-              SAP Module
+              {data?.mainModuleHeroData?.badgeText}
             </div>
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-blue-900">
-              SAP SD{" "}
-              <span className="text-blue-600">(Sales and Distribution)</span>
+              {data?.mainModuleHeroData?.title}{" "}
+              <span className="text-blue-600">
+                {data?.mainModuleHeroData?.titleHighlight}
+              </span>
             </h1>
             <p className="text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Streamline your enterprise sales and distribution with SAP SD.
+              {data?.mainModuleHeroData?.description}
             </p>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
               <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                Get Started
+                {data?.mainModuleHeroData?.primaryButtonText}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button
                 variant="outline"
                 className="border-blue-200 text-blue-600 hover:bg-blue-50"
               >
-                Learn More
+                {data?.mainModuleHeroData?.secondaryButtonText}
               </Button>
             </div>
           </div>
