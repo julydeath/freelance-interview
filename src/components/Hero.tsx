@@ -5,6 +5,7 @@
 import { fadeInUp } from "@/utils/animations";
 import { motion } from "framer-motion";
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function Hero({ transportModule }: any) {
   return (
     <div>
@@ -29,10 +30,10 @@ export default function Hero({ transportModule }: any) {
               SAP Module
             </span>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 leading-tight">
-            SAP SD (Sales and Distribution)
+              SAP SD (Sales and Distribution)
             </h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-2xl lowercase">
-            Streamline Your Enterprise Sales and Distribution with SAP SD
+              Streamline Your Enterprise Sales and Distribution with SAP SD
             </p>
             <div className="mt-8">
               <motion.a
