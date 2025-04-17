@@ -11,27 +11,27 @@ export default function MainModuleHero({ data }: { data: any }) {
         <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
           <div className="space-y-4">
             <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800 mb-2">
-              {data?.mainModuleHeroData?.badgeText}
+              {data?.HeroData?.badgeText}
             </div>
             <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-blue-900">
-              {data?.mainModuleHeroData?.title}{" "}
+              {data?.HeroData?.title}{" "}
               <span className="text-blue-600">
-                {data?.mainModuleHeroData?.titleHighlight}
+                {data?.HeroData?.titleHighlight}
               </span>
             </h1>
             <p className="text-gray-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              {data?.mainModuleHeroData?.description}
+              {data?.HeroData?.description}
             </p>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
               <Button className="bg-blue-600 hover:bg-blue-700 text-white">
-                {data?.mainModuleHeroData?.primaryButtonText}
+                {data?.HeroData?.primaryButtonText}
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button
                 variant="outline"
                 className="border-blue-200 text-blue-600 hover:bg-blue-50"
               >
-                {data?.mainModuleHeroData?.secondaryButtonText}
+                {data?.HeroData?.secondaryButtonText}
               </Button>
             </div>
           </div>
