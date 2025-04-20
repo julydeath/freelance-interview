@@ -2,11 +2,7 @@
 
 "use client";
 
-import { fadeIn, fadeInUp, staggerChildren } from "@/utils/animations";
-import { motion } from "framer-motion";
-import * as LucideIcons from "lucide-react";
-
-export default function Features({ data }: any) {
+export default function Features({}: any) {
   return (
     // <section className="py-20 bg-gray-50 scroll-animate">
     //   <div className="container mx-auto px-4">
@@ -73,6 +69,6 @@ export default function Features({ data }: any) {
     //     </div>
     //   </div>
     // </section>
-    <div>Featers</div>
+    <div>Features</div>
   );
 }

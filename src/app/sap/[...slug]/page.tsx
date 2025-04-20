@@ -92,6 +92,8 @@ export default async function SlugPage({
   const { componentNames } =
     templateMap[structureKey] || templateMap["main-module"];
 
+  console.log({ componentNames });
+
   return (
     <main className="container mx-auto py-8">
       {componentNames.map((componentName: string) => {
@@ -101,7 +103,7 @@ export default async function SlugPage({
           console.warn(`Component ${componentName} not found`);
           return null;
         }
-        return <Component key={componentName} data={content[0]} />;
+        return <Component key={componentName} data={content} />;
       })}
     </main>
   );

@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-nocheck
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -10,35 +13,33 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import * as LucideIcons from "lucide-react";
 
-export default function FAQs({ data }) {
-  // Simplify FAQ answers to be shorter and prevent overflow
+export default function FAQs({ data }: { data: any }) {
+  const faqs = data?.FAQs;
 
-  // Update the tabs to be more responsive on mobile
+  if (!faqs) return null;
+
   return (
     <section className="w-full py-12 md:py-24 bg-blue-50">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <div className="inline-block rounded-lg bg-blue-100 px-3 py-1 text-sm text-blue-800">
-              FAQs & Support
+              {faqs.badgeText}
             </div>
             <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-blue-900">
-              Expert Support for Your SAP SD Needs
+              {faqs.title}
             </h2>
             <p className="mx-auto max-w-[700px] text-gray-600 md:text-lg/relaxed">
-              Find answers to common questions and get the support you need
+              {faqs.description}
             </p>
           </div>
         </div>
 
         <div className="mt-12">
-          <Tabs
-            defaultValue={data.FAQsData.categories[0].id}
-            className="w-full"
-          >
+          <Tabs defaultValue={faqs.categories[0].id} className="w-full">
             <div className="overflow-x-auto pb-2">
               <TabsList className="inline-flex min-w-max bg-blue-100 mb-6">
-                {data.FAQsData.categories.map((category) => (
+                {faqs.categories.map((category) => (
                   <TabsTrigger
                     key={category.id}
                     value={category.id}
@@ -50,7 +51,7 @@ export default function FAQs({ data }) {
               </TabsList>
             </div>
 
-            {data.FAQsData.categories.map((category) => (
+            {faqs.categories.map((category) => (
               <TabsContent key={category.id} value={category.id}>
                 <div className="bg-white rounded-xl p-6 shadow-md border border-blue-100">
                   <h3 className="text-xl font-bold text-blue-900 mb-4">
@@ -78,7 +79,7 @@ export default function FAQs({ data }) {
             ))}
           </Tabs>
 
-          {data.FAQsData.buttons.map((button, index) => {
+          {faqs.buttons.map((button, index) => {
             const IconComponent =
               LucideIcons[button?.icon] || LucideIcons.HelpCircle;
             return (

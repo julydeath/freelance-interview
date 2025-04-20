@@ -18,10 +18,9 @@ export const templateMap: Record<
   "main-module+sub-module": {
     templateName: "sub_module_template",
     componentNames: [
-      "MainModuleHero",
-      "MainModuleOverview",
       "CoreCapabilities",
       "IntegrationCapabilities",
+      "FeaturedConsultants",
       "FAQs",
     ],
   },
